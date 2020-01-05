@@ -5,8 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sample Movies</title>
-</head>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></head>
 <body>
-    Tes..
+    <div id="movies" v-cloak>
+        <div class="header">
+            <div class="title-header">{{ title }}</div>
+            <transition name="slide-fade" mode="out-in">
+                <div key="3" v-if="activeImg">
+                    <img class="banner-header" :src="activeImg" alt="Image Header">
+                </div>
+                <div key="1" v-if="!activeImg">
+                </div>
+            </transition>
+        </div>
+        <h1 class="header-movies">Most Popular</h1>
+        <div class="wrapper-movies">
+            <ul>
+                <li v-for="item in listMovies">
+                    <div class="card-movie" @mouseover="mouseover(item)" @mouseleave="mouseLeave">
+                        <img class="img-movie" :src="'https://image.tmdb.org/t/p/w300' + item.poster_path">
+                        <div class="content-movie">
+                            <div class="popularity">
+                                <span class="fa fa-heart-o"></span> {{ item.popularity }}
+                            </div>
+                            <div class="rating">
+                                {{ item.vote_average * 10 }}
+                            </div>
+                            <div class="desc-movie">
+                                <div class="lang-movie">
+                                    <span class="lang">{{ item.original_language }}</span>
+                                </div>
+                                <div class="date-movie">{{ mappingDate(item.release_date) }}</div>
+                                <div class="title-movie">{{ item.original_title }}</div>
+                                <div class="overview">
+                                    {{ item.overview }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script type="module" src="./js/movies.js"></script>
 </body>
 </html>
