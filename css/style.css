@@ -207,6 +207,7 @@ input[type=text], input[type=email], input[type=number], textarea {
 }
 
 .btn-submit:hover {
+    margin-top: 20px;
     background-color: #ffffff;
     color: #2c50ee;
 }
