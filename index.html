@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></head>
 <body>
+    <div id="loading" class="loading-page">
+        <span class="loading-page__text">Loading ...</span>
+    </div>
     <div id="movies" v-cloak>
         <div class="header">
             <div class="title-header">{{ title }}</div>
@@ -23,9 +26,9 @@
         <h1 class="header-movies">Most Popular</h1>
         <div class="wrapper-movies">
             <ul>
-                <li v-for="item in listMovies">
+                <li v-for="(item, index) in listMovies">
                     <div class="card-movie" @mouseover="mouseover(item)" @mouseleave="mouseLeave">
-                        <img class="img-movie" :src="'https://image.tmdb.org/t/p/w300' + item.poster_path">
+                        <img class="img-movie" :id="'img-movie-'+index" :src="'https://image.tmdb.org/t/p/w300' + item.poster_path">
                         <div class="content-movie">
                             <div class="popularity">
                                 <span class="fa fa-heart-o"></span> {{ item.popularity }}

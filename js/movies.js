@@ -18,6 +18,31 @@ var app = new Vue({
         if (response.status !== null) {
           const { results } = response.data;
           this.listMovies = results;
+
+          this.listMovies.forEach(function(d, i) {
+            var image = new Image();
+            var imgUrl = 'https://image.tmdb.org/t/p/w300' + d.poster_path;
+
+            image.onload = function () {
+              console.info("Image loaded !" + d.name);
+              document.getElementById('img-movie-'+i).classList.add('img-loaded');
+            }
+            image.onerror = function () {
+              console.error("Cannot load image");
+            }
+
+            image.src = imgUrl;
+          });
+
+          // console.log(document.getElementsByClassName('img-movie'));
+
+          // remove and show page after all data fetched
+          document.getElementById('loading').classList.add("hide-anim");
+          document.getElementById('movies').classList.add("show-anim");
+
+          setTimeout(function() {
+            document.getElementById('loading').classList.add("hidden")
+          }, 1000);
         }
       });
     },
