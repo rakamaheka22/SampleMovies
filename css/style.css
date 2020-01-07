@@ -93,6 +93,13 @@ input[type=text], input[type=email], input[type=number], textarea {
     width: 100%;
     object-fit: cover;
     border-radius: 15px;
+    opacity: 0;
+}
+
+.img-movie.img-loaded {
+    opacity: 1;
+    transition: all .2s ease-in-out;
+    transition-duration: 1s;
 }
 
 .content-movie {
@@ -229,12 +236,57 @@ input[type=text], input[type=email], input[type=number], textarea {
 /* durations and timing functions.              */
 .slide-fade-enter-active {
     transition: all .2s ease;
-  }
-  .slide-fade-leave-active {
+}
+.slide-fade-leave-active {
     transition: all .4s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  }
-  .slide-fade-enter, .slide-fade-leave-to
-  /* .slide-fade-leave-active below version 2.1.8 */ {
+}
+.slide-fade-enter, .slide-fade-leave-to
+    /* .slide-fade-leave-active below version 2.1.8 */ {
     transform: translateX(-10px);
     opacity: 0;
-  }
+}
+
+
+/* Loading and animations */
+@-webkit-keyframes fadeInScreen {from {opacity: 0;}to {opacity: 1;}}
+@keyframes fadeInScreen {from {opacity: 0;}to {opacity: 1;}}
+@-webkit-keyframes fadeOutScreen {from {opacity: 1;}to {opacity: 0;}}
+@keyframes fadeOutScreen {from {opacity: 1;}to {opacity: 0;}}
+
+.loading-page {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    background-color: #13181c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-page__text {
+    color: #fff;
+    font-size: 16px;
+}
+
+.show-anim {
+  animation: fadeInScreen;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.hide-anim {
+  animation: fadeOutScreen;
+  animation-duration: .2s;
+  animation-fill-mode: both;
+}
+
+.hidden {
+    display: none;
+}
+
+[v-cloak] {
+    display: none;
+}
